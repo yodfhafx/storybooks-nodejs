@@ -29,12 +29,12 @@ const StorySchema = new Schema({
       default: Date.now()
     },
     commentUser: {
-      type: Schema.type.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'users'
     }
   }],
   user: {
-    type: Schema.type.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'users'
   },
   date: {
