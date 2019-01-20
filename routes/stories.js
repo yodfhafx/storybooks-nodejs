@@ -61,8 +61,15 @@ router.post('/', (req, res) => {
 });
 
 // Edit Story Form
-router.get('/edit', (req, res) => {
-  res.render('stories/edit');
+router.get('/edit/:id', (req, res) => {
+  Story.findOne({
+    _id: req.params.id
+  })
+  .then(story => {
+    res.render('stories/edit', {
+      story: story
+    });
+  });
 });
 
 // Show Story
