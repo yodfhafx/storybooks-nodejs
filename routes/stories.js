@@ -114,11 +114,6 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
   });
 });
 
-// Show Story
-router.get('/show', (req, res) => {
-  res.render('stories/show');
-});
-
 // Edit Form Process
 router.put('/:id', (req, res) => {
   Story.findOne({
@@ -134,16 +129,15 @@ router.put('/:id', (req, res) => {
     }
 
     // New Value
-    story.title = req.body.title,
-    story.body = req.body.body,
-    story.status = req.body.status,
-    story.allowComments = allowComments
+    story.title = req.body.title;
+    story.body = req.body.body;
+    story.status = req.body.status;
+    story.allowComments = allowComments;
 
     story.save()
       .then(story => {
         res.redirect('/dashboard');
       });
-
   });
 });
 
@@ -166,13 +160,13 @@ router.post('/comment/:id', (req, res) => {
       commentUser: req.user.id
     }
 
-    // Push to comments array
+    // Add to comments array
     story.comments.unshift(newComment);
 
     story.save()
       .then(story => {
-        res.redirect(`/stories/show/${story.id}`)
-      })
+        res.redirect(`/stories/show/${story.id}`);
+      });
   });
 });
 
